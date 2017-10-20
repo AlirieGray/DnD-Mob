@@ -5,7 +5,7 @@ import PopUp from './PopUp';
 import NumberPicker from './NumberPicker';
 
 // form for entering character data
-export default class CharacterForm extends Component {
+export default class CharacterFormAndroid extends Component {
   constructor(props) {
     super(props);
   }

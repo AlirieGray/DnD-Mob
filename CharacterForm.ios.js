@@ -5,7 +5,7 @@ import PopUp from './PopUp';
 import NumberPicker from './NumberPicker';
 
 // form for entering character data
-export default class CharacterForm extends Component {
+export default class CharacterFormIOS extends Component {
   constructor(props) {
     super(props);
   }
@@ -43,7 +43,6 @@ export default class CharacterForm extends Component {
       <ScrollView contentContainerStyle={styles.contentContainer}>
       <PopUp isVisible={this.props.statPickerVisible} toggleVisbility={this.props.showStatPicker} getData={this.getStats.bind(this)} popUpStyle={styles.statsContainer}/>
       <PopUp isVisible={this.props.alignmentPickerVisible} toggleVisbility={this.props.showAlignmentPicker} getData={this.getAlignments.bind(this)} popUpStyle={styles.alignmentContainer}/>
-        <Text style={{color: '#bbb', fontStyle: 'italic', paddingLeft:5}}> Name: </Text>
         <TextInput
           style={styles.textIn}
           placeholder="Name"

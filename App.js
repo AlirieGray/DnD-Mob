@@ -1,10 +1,14 @@
 import React, {Component} from 'react';
-import { StyleSheet, Text, View, Image, Button, TextInput, ScrollView, Picker, Modal, TouchableHighlight, AsyncStorage } from 'react-native';
+import { StyleSheet, Text, View, Image, Button, TextInput, ScrollView, Picker, Modal, TouchableHighlight, AsyncStorage, Platform } from 'react-native';
 import { StackNavigator, DrawerNavigator, DrawerItems, DrawerView } from 'react-navigation';
 import DiceRoller from './DiceRoller';
 import CharacterForm from './CharacterForm';
 import Profile from './Profile';
 
+// const CharacterForm = Platform.select({
+//   ios: () => require('CharacterFormIOS'),
+//   android: () => require('CharacterFormAndroid'),
+// })();
 
 // create new character screen
 class CreateCharacterScreen extends Component {
