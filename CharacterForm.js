@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { StyleSheet, Text, View, Image, Button, TextInput, ScrollView, Picker, Modal, TouchableHighlight, AsyncStorage } from 'react-native';
 import { StackNavigator, DrawerNavigator, DrawerItems, DrawerView } from 'react-navigation';
 import PopUp from './PopUp';
+import NumberPicker from './NumberPicker';
 
 // form for entering character data
 export default class CharacterForm extends Component {
@@ -82,6 +83,7 @@ class Stat extends Component {
     return(
       <View style={styles.statObj}>
           <Text> {this.props.abbrv} </Text>
+          <NumberPicker />
       </View>
     );
   }
@@ -164,6 +166,7 @@ const styles = StyleSheet.create({
   },
   statObj: {
     display: 'flex',
-    flexDirection: 'row'
+    flexDirection: 'row',
+    alignItems: 'center'
   }
 });
