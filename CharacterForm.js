@@ -48,10 +48,12 @@ export default class CharacterForm extends Component {
           style={styles.textIn}
           placeholder="Name"
           onChangeText={this.props.onSetName}> </TextInput>
-        <Picker selectedValue={this.props.race} onValueChange={this.props.onPickRace}>
+        <Text style={{color: '#bbb', fontStyle: 'italic', paddingLeft:5}}> Race: </Text>
+        <Picker style={{marginBottom:10}} selectedValue={this.props.race} onValueChange={this.props.onPickRace}>
           {this.getRaces()}
         </Picker>
-        <Picker selectedValue={this.props.clas} onValueChange={this.props.onPickClass}>
+        <Text style={{color: '#bbb', fontStyle: 'italic', paddingLeft:5}}> Class: </Text>
+        <Picker style={{marginBottom:10}} selectedValue={this.props.clas} onValueChange={this.props.onPickClass}>
           {this.getClasses()}
         </Picker>
         <View style={styles.charFormButton} >
@@ -123,6 +125,7 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
     fontSize: 16,
     marginHorizontal: 3,
+    marginBottom: 10
   },
   menuIcon: {
     paddingLeft: 10
