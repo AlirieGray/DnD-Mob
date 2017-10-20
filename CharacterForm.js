@@ -43,6 +43,7 @@ export default class CharacterForm extends Component {
       <ScrollView contentContainerStyle={styles.contentContainer}>
       <PopUp isVisible={this.props.statPickerVisible} toggleVisbility={this.props.showStatPicker} getData={this.getStats.bind(this)} popUpStyle={styles.statsContainer}/>
       <PopUp isVisible={this.props.alignmentPickerVisible} toggleVisbility={this.props.showAlignmentPicker} getData={this.getAlignments.bind(this)} popUpStyle={styles.alignmentContainer}/>
+        <Text style={{color: '#bbb', fontStyle: 'italic', paddingLeft:5}}> Name: </Text>
         <TextInput
           style={styles.textIn}
           placeholder="Name"
@@ -82,7 +83,7 @@ class Stat extends Component {
   render() {
     return(
       <View style={styles.statObj}>
-          <Text> {this.props.abbrv} </Text>
+          <Text style={{fontSize:16}}> {this.props.abbrv} </Text>
           <NumberPicker />
       </View>
     );
@@ -118,8 +119,10 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
   },
   textIn: {
-    padding: 10,
-    fontSize: 16
+    paddingHorizontal: 10,
+    paddingBottom: 10,
+    fontSize: 16,
+    marginHorizontal: 3,
   },
   menuIcon: {
     paddingLeft: 10
@@ -162,11 +165,14 @@ const styles = StyleSheet.create({
   },
   statsContainer: {
     display: 'flex',
-    flexDirection: 'column'
+    flexDirection: 'row',
+    alignItems: 'center',
+    flexWrap: 'wrap'
   },
   statObj: {
     display: 'flex',
     flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'center',
+    marginVertical: 6,
   }
 });

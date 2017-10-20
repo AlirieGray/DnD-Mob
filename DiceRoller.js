@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { StyleSheet, Text, View, Image, Button, TextInput, Picker, Modal, TouchableHighlight } from 'react-native';
+import { StyleSheet, Text, View, Image, Button, TextInput, Modal, TouchableHighlight } from 'react-native';
 import { StackNavigator, DrawerNavigator, DrawerItems, DrawerView } from 'react-navigation';
 
 export default class DiceRoller extends Component {

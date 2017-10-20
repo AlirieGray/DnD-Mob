@@ -1,11 +1,15 @@
 import React, {Component} from 'react';
 import { StyleSheet, Text, View, Image, Button, TextInput, ScrollView, Picker, Modal, TouchableHighlight, AsyncStorage } from 'react-native';
 
+/* TODO: Use react native icon package instead of png image in TouchableHighlight
+ * TODO: handle state from top down
+*/
+
 export default class NumberPicker extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      num: 3
+      num: 10
     }
   }
 
@@ -30,7 +34,7 @@ export default class NumberPicker extends Component {
   render() {
     return(
       <View style={styles.container}>
-          <DisplayNumber num={this.state.num}/>
+        <DisplayNumber num={this.state.num}/>
         <IncrementButtons decrement={this.decrement.bind(this)} increment={this.increment.bind(this)}/>
       </View>
     );
@@ -44,7 +48,7 @@ class DisplayNumber extends Component {
 
   render(){
     return(
-      <Text style={{alignSelf:'center'}}> {this.props.num} </Text>
+      <Text style={styles.numberBox}> {this.props.num} </Text>
     );
   }
 }
@@ -83,14 +87,21 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     width: 90,
-    height: 40,
+    height: 50,
   },
   buttonContainer: {
     display: 'flex',
     flexDirection: 'column',
   },
+  numberBox: {
+    marginHorizontal: 5,
+    alignSelf: 'center',
+    fontSize: 16,
+    width: 32,
+    paddingLeft: 8,
+  },
   icon: {
-    width: 17,
-    height: 17
+    width: 24,
+    height: 24
   }
 })
