@@ -84,7 +84,7 @@ class CreateCharacterScreen extends Component {
           source={require('./menu_icon.png')}
         />
       </TouchableHighlight>
-        <CharacterForm statPicker={this.state.statPickerVisible} race={this.state.race} clas={this.state.clas} onPickRace={this.setRace.bind(this)} onPickClass={this.setClass.bind(this)} onSetName={this.setName.bind(this)} saveChar={this.saveCharacterData.bind(this)} showStatPicker={this.showStatPicker.bind(this)}/>
+        <CharacterForm statPickerVisible={this.state.statPickerVisible} showStatPicker={this.showStatPicker.bind(this)} race={this.state.race} clas={this.state.clas} onPickRace={this.setRace.bind(this)} onPickClass={this.setClass.bind(this)} onSetName={this.setName.bind(this)} saveChar={this.saveCharacterData.bind(this)} />
       </View>
     );
   }
