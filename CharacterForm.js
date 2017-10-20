@@ -25,14 +25,22 @@ export default class CharacterForm extends Component {
   getStats() {
     var stats = ["STR", "DEX", "CON", "INT", "WIS", "CHA"];
     return stats.map((stat, index) => {
-      return <Stat key={index} abbrv={stat} />
+      return <Stat key={index} abbrv={stat} setData={this.props.setStats} />
+    });
+  }
+
+  getAlignments() {
+    var alignments = ["LG", "LN", "LE", "NG", "NN", "NE", "CG", "CN", "CN"];
+    return alignments.map((align, index) => {
+      return <Alignment key={index} abbrv={align} setData={this.props.setAlignment}/>
     });
   }
 
   render() {
     return(
       <ScrollView contentContainerStyle={styles.contentContainer}>
-      <PopUp statPicker={this.props.statPickerVisible} showStatPicker={this.props.showStatPicker} getStats={this.getStats.bind(this)}/>
+      <PopUp isVisible={this.props.statPickerVisible} toggleVisbility={this.props.showStatPicker} getData={this.getStats.bind(this)} popUpStyle={styles.statsContainer}/>
+      <PopUp isVisible={this.props.alignmentPickerVisible} toggleVisbility={this.props.showAlignmentPicker} getData={this.getAlignments.bind(this)} popUpStyle={styles.alignmentContainer}/>
         <TextInput
           style={styles.textIn}
           placeholder="Name"
@@ -51,7 +59,7 @@ export default class CharacterForm extends Component {
         </View>
         <View style={styles.charFormButton} >
           <Button
-            onPress={this.props.showStatPicker}
+            onPress={this.props.showAlignmentPicker}
             title="Alignment"
           />
         </View>
@@ -78,6 +86,24 @@ class Stat extends Component {
   }
 }
 
+class Alignment extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return(
+      <TouchableHighlight onPress={() => {
+        this.props.setData(this.props.abbrv);
+      }}>
+        <View style={styles.alignmentBox}>
+          <Text> {this.props.abbrv} </Text>
+        </View>
+      </TouchableHighlight>
+    );
+  }
+}
+
 class PopUp extends Component {
   constructor(props) {
     super(props);
@@ -86,8 +112,8 @@ class PopUp extends Component {
   render() {
     return(
       <Modal transparent={true}
-        visible={this.props.statPicker}
-        onRequestClose={this.props.showStatPicker}>
+        visible={this.props.isVisible}
+        onRequestClose={this.props.toggleVisbility}>
           <View style={{
             flex: 1,
             flexDirection: 'column',
@@ -102,12 +128,12 @@ class PopUp extends Component {
               padding: 20,
               display: 'flex'
             }}>
-              <View>
-                {this.props.getStats()}
+              <View style={this.props.popUpStyle}>
+                {this.props.getData()}
               </View>
               <View style={styles.closeStatWindow}>
                 <TouchableHighlight onPress={() => {
-                  this.props.showStatPicker()
+                  this.props.toggleVisbility()
                 }}>
                   <Text> Close </Text>
                 </TouchableHighlight>
@@ -155,5 +181,25 @@ const styles = StyleSheet.create({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center'
+  },
+  alignmentContainer: {
+    display: 'flex',
+    flex: 1,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+  },
+  alignmentBox: {
+    width: 70,
+    height: 40,
+    margin: 2,
+    marginVertical: 20,
+    backgroundColor: '#aaa',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 4
+  },
+  statsContainer: {
+
   }
 });

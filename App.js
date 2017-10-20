@@ -23,7 +23,9 @@ class CreateCharacterScreen extends Component {
       race: "Dragonborn",
       clas: "Barbarian",
       name: "",
-      statPickerVisible: false
+      alignment: "",
+      statPickerVisible: false,
+      alignmentPickerVisible: false
     }
   }
 
@@ -34,7 +36,8 @@ class CreateCharacterScreen extends Component {
     var character = {
       race: this.state.race,
       clas: this.state.clas,
-      name: this.state.name
+      name: this.state.name,
+      alignment: this.getAlignment(this.state.alignment)
     };
     try {
       await AsyncStorage.setItem("a", JSON.stringify(character));
@@ -44,6 +47,29 @@ class CreateCharacterScreen extends Component {
     } catch (err) {
       // Error saving data
       console.error(err);
+    }
+  }
+
+  getAlignment(abbrv){
+    switch(abbrv) {
+      case "LG":
+        return "Lawful Good";
+      case "LN":
+        return "Lawful Neutral";
+      case "LE":
+        return "Lawful Evil";
+      case "NG":
+        return "Neutral Good";
+      case "NE":
+        return "Neutral Evil";
+      case "CG":
+        return "Chaotic Good";
+      case "CN":
+        return "Chaotic Neutral";
+      case "CE":
+        return "Chaotic Evil";
+      default:
+        return "True Neutral"
     }
   }
 
@@ -65,9 +91,28 @@ class CreateCharacterScreen extends Component {
     })
   }
 
+  setAlignment(value: string) {
+    this.setState({
+      alignment: value,
+      alignmentPickerVisible: (this.state.alignmentPickerVisible ? false : true)
+    })
+  }
+
+  setStats(value: string) {
+    this.setState({
+      stats: value
+    })
+  }
+
   showStatPicker() {
     this.setState({
       statPickerVisible: (this.state.statPickerVisible ? false : true)
+    })
+  }
+
+  showAlignmentPicker() {
+    this.setState({
+      alignmentPickerVisible: (this.state.alignmentPickerVisible ? false : true)
     })
   }
 
@@ -84,7 +129,7 @@ class CreateCharacterScreen extends Component {
           source={require('./menu_icon.png')}
         />
       </TouchableHighlight>
-        <CharacterForm statPickerVisible={this.state.statPickerVisible} showStatPicker={this.showStatPicker.bind(this)} race={this.state.race} clas={this.state.clas} onPickRace={this.setRace.bind(this)} onPickClass={this.setClass.bind(this)} onSetName={this.setName.bind(this)} saveChar={this.saveCharacterData.bind(this)} />
+        <CharacterForm setAlignment={this.setAlignment.bind(this)} setStats={this.setStats.bind(this)} statPickerVisible={this.state.statPickerVisible} showStatPicker={this.showStatPicker.bind(this)} alignmentPickerVisible={this.state.alignmentPickerVisible} showAlignmentPicker={this.showAlignmentPicker.bind(this)} race={this.state.race} clas={this.state.clas} onPickRace={this.setRace.bind(this)} onPickClass={this.setClass.bind(this)} onSetName={this.setName.bind(this)} saveChar={this.saveCharacterData.bind(this)} />
       </View>
     );
   }

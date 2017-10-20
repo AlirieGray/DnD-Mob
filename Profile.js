@@ -26,7 +26,8 @@ export default class Profile extends Component {
         this.setState({
           race: character.race,
           clas: character.clas,
-          name: character.name
+          name: character.name,
+          alignment: character.alignment
         })
       }
     } catch(err) {
@@ -54,6 +55,7 @@ export default class Profile extends Component {
           <Text style={styles.charName}> {this.state.name} </Text>
           <Text style={styles.charRace}> {this.state.race} </Text>
           <Text style={styles.charClass}> {this.state.clas} </Text>
+          <Text style={styles.charAlignment}> {this.state.alignment} </Text>
         </View>
       </View>
     );
@@ -86,6 +88,10 @@ const styles = StyleSheet.create({
     fontSize: 16
   },
   charClass: {
+    fontSize: 16
+  },
+  charAlignment: {
+    marginTop: 10,
     fontSize: 16
   }
 });
